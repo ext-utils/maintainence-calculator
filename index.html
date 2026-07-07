@@ -3,131 +3,161 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Rudra Society Advance Payment Calculator</title>
 
 <style>
-    *{
-        margin:0;
-        padding:0;
-        box-sizing:border-box;
-        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
 
-    body{
-        background: linear-gradient(135deg,#0f172a,#1e293b,#334155);
-        min-height:100vh;
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        padding:20px;
-    }
+body{
+    background:linear-gradient(135deg,#0f172a,#1e3a8a);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
 
-    .container{
-        width:100%;
-        max-width:500px;
-        background:white;
-        border-radius:25px;
-        padding:30px;
-        box-shadow:0 15px 40px rgba(0,0,0,0.25);
-    }
+.container{
+    width:100%;
+    max-width:550px;
+    background:#fff;
+    border-radius:25px;
+    padding:30px;
+    box-shadow:0 20px 50px rgba(0,0,0,0.25);
+}
 
-    .title{
-        text-align:center;
-        margin-bottom:25px;
-    }
+.logo-section{
+    text-align:center;
+    margin-bottom:25px;
+}
 
-    .title h1{
-        color:#0f172a;
-        font-size:28px;
-        margin-bottom:8px;
-    }
+.logo{
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#2563eb,#60a5fa);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:auto;
+    font-size:48px;
+    color:white;
+    box-shadow:0 8px 20px rgba(37,99,235,0.3);
+}
 
-    .title p{
-        color:#64748b;
-        font-size:14px;
-    }
+.logo-title{
+    margin-top:12px;
+    font-size:28px;
+    font-weight:700;
+    color:#0f172a;
+}
 
-    .form-group{
-        margin-bottom:18px;
-    }
+.logo-subtitle{
+    color:#64748b;
+    margin-top:5px;
+}
 
-    label{
-        display:block;
-        margin-bottom:8px;
-        font-weight:600;
-        color:#334155;
-    }
+.form-group{
+    margin-bottom:18px;
+}
 
-    input, select{
-        width:100%;
-        padding:14px;
-        border:2px solid #e2e8f0;
-        border-radius:12px;
-        font-size:16px;
-        outline:none;
-        transition:0.3s;
-    }
+label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:600;
+    color:#334155;
+}
 
-    input:focus,
-    select:focus{
-        border-color:#2563eb;
-    }
+input,select{
+    width:100%;
+    padding:14px;
+    border:2px solid #e2e8f0;
+    border-radius:12px;
+    font-size:16px;
+}
 
-    .readonly{
-        background:#f1f5f9;
-        color:#475569;
-        font-weight:600;
-    }
+input:focus,
+select:focus{
+    outline:none;
+    border-color:#2563eb;
+}
 
-    .btn{
-        width:100%;
-        padding:15px;
-        border:none;
-        border-radius:12px;
-        background:linear-gradient(135deg,#2563eb,#1d4ed8);
-        color:white;
-        font-size:18px;
-        font-weight:700;
-        cursor:pointer;
-        transition:0.3s;
-    }
+.readonly{
+    background:#f1f5f9;
+    color:#475569;
+    font-weight:600;
+}
 
-    .btn:hover{
-        transform:translateY(-2px);
-    }
+.btn{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:17px;
+    font-weight:700;
+    margin-top:10px;
+}
 
-    .result{
-        margin-top:25px;
-        background:linear-gradient(135deg,#dcfce7,#bbf7d0);
-        border-radius:18px;
-        padding:20px;
-        text-align:center;
-        display:none;
-    }
+.calculate-btn{
+    background:#2563eb;
+    color:white;
+}
 
-    .result h2{
-        color:#166534;
-        margin-bottom:10px;
-    }
+.calculate-btn:hover{
+    background:#1d4ed8;
+}
 
-    .amount{
-        font-size:36px;
-        font-weight:800;
-        color:#15803d;
-    }
+.whatsapp-btn{
+    background:#25D366;
+    color:white;
+    display:none;
+}
 
-    .note{
-        margin-top:20px;
-        text-align:center;
-        color:#64748b;
-        font-size:13px;
-    }
+.result{
+    margin-top:25px;
+    background:#ecfdf5;
+    border:2px solid #bbf7d0;
+    border-radius:18px;
+    padding:20px;
+    display:none;
+}
 
-    @media(max-width:480px){
-        .title h1{
-            font-size:22px;
-        }
-    }
+.result h3{
+    text-align:center;
+    color:#166534;
+}
+
+.result-table{
+    width:100%;
+    margin-top:15px;
+}
+
+.result-table td{
+    padding:8px 0;
+    border-bottom:1px solid #d1fae5;
+}
+
+.final-amount{
+    text-align:center;
+    margin-top:15px;
+    font-size:34px;
+    font-weight:800;
+    color:#15803d;
+}
+
+.footer{
+    margin-top:20px;
+    text-align:center;
+    color:#64748b;
+    font-size:13px;
+}
 </style>
 </head>
 
@@ -135,18 +165,25 @@
 
 <div class="container">
 
-    <div class="title">
-        <h1>🏢 Rudra Society</h1>
-        <p>Advance Payment Calculator</p>
+    <div class="logo-section">
+        <div class="logo">🏢</div>
+        <div class="logo-title">Rudra Society</div>
+        <div class="logo-subtitle">
+            Advance Payment Calculator
+        </div>
     </div>
 
     <div class="form-group">
         <label>Monthly Maintenance (₹)</label>
-        <input type="number" id="maintenance" placeholder="Enter Monthly Maintenance">
+        <input
+            type="number"
+            id="maintenance"
+            placeholder="Enter monthly maintenance"
+            oninput="calculateFields()">
     </div>
 
     <div class="form-group">
-        <label>Advance Duration</label>
+        <label>Duration</label>
         <select id="duration" onchange="calculateFields()">
             <option value="">Select Duration</option>
             <option value="6">6 Months</option>
@@ -156,45 +193,87 @@
 
     <div class="form-group">
         <label>Total Amount (₹)</label>
-        <input type="text" id="totalAmount" class="readonly" readonly>
+        <input
+            type="text"
+            id="totalAmount"
+            class="readonly"
+            readonly>
     </div>
 
     <div class="form-group">
         <label>Discount</label>
-        <input type="text" id="discount" class="readonly" readonly>
+        <input
+            type="text"
+            id="discount"
+            class="readonly"
+            readonly>
     </div>
 
     <div class="form-group">
         <label>Previous Balance (₹)</label>
-        <input type="number" id="previousBalance" value="0" placeholder="Enter Previous Balance">
+        <input
+            type="number"
+            id="previousBalance"
+            value="0">
     </div>
 
-    <button class="btn" onclick="calculateFinalAmount()">
+    <button class="btn calculate-btn"
+            onclick="calculateFinalAmount()">
         Calculate Final Payable Amount
     </button>
 
     <div class="result" id="resultBox">
-        <h2>Final Payable Amount</h2>
-        <div class="amount" id="finalAmount">₹0</div>
+
+        <h3>Payment Summary</h3>
+
+        <table class="result-table">
+            <tr>
+                <td>Total Amount</td>
+                <td align="right" id="summaryTotal"></td>
+            </tr>
+
+            <tr>
+                <td>Discount</td>
+                <td align="right" id="summaryDiscount"></td>
+            </tr>
+
+            <tr>
+                <td>Previous Balance</td>
+                <td align="right" id="summaryBalance"></td>
+            </tr>
+        </table>
+
+        <div class="final-amount" id="finalAmount">
+            ₹0
+        </div>
+
+        <button class="btn whatsapp-btn"
+                id="whatsappBtn"
+                onclick="shareWhatsApp()">
+            Share on WhatsApp
+        </button>
+
     </div>
 
-    <div class="note">
-        Discount: 3% for 6 Months | 6% for 12 Months
+    <div class="footer">
+        6 Months = 3% Discount | 12 Months = 6% Discount
     </div>
 
 </div>
 
 <script>
 
-function calculateFields() {
+let finalPayable = 0;
+
+function calculateFields(){
 
     let maintenance =
-        parseFloat(document.getElementById("maintenance").value) || 0;
+        parseFloat(document.getElementById('maintenance').value) || 0;
 
     let duration =
-        parseInt(document.getElementById("duration").value) || 0;
+        parseInt(document.getElementById('duration').value) || 0;
 
-    let totalAmount = maintenance * duration;
+    let total = maintenance * duration;
 
     let discountPercent = 0;
 
@@ -206,52 +285,80 @@ function calculateFields() {
     }
 
     let discountAmount =
-        totalAmount * discountPercent / 100;
+        total * discountPercent / 100;
 
-    document.getElementById("totalAmount").value =
-        totalAmount.toFixed(2);
+    document.getElementById('totalAmount').value =
+        total.toFixed(2);
 
-    document.getElementById("discount").value =
-        discountPercent + "% (₹" +
-        discountAmount.toFixed(2) + ")";
+    document.getElementById('discount').value =
+        discountPercent +
+        "% (₹" +
+        discountAmount.toFixed(2) +
+        ")";
 }
-
-document.getElementById("maintenance")
-.addEventListener("input", calculateFields);
 
 function calculateFinalAmount(){
 
     let maintenance =
-        parseFloat(document.getElementById("maintenance").value) || 0;
+        parseFloat(document.getElementById('maintenance').value) || 0;
 
     let duration =
-        parseInt(document.getElementById("duration").value) || 0;
+        parseInt(document.getElementById('duration').value) || 0;
 
     let previousBalance =
-        parseFloat(document.getElementById("previousBalance").value) || 0;
+        parseFloat(document.getElementById('previousBalance').value) || 0;
 
     if(maintenance <= 0 || duration <= 0){
-        alert("Please enter Monthly Maintenance and Duration.");
+        alert("Please enter maintenance and duration.");
         return;
     }
 
-    let totalAmount = maintenance * duration;
+    let total = maintenance * duration;
 
     let discountPercent =
         duration === 6 ? 3 : 6;
 
     let discountAmount =
-        totalAmount * discountPercent / 100;
+        total * discountPercent / 100;
 
-    let finalAmount =
-        totalAmount - discountAmount - previousBalance;
+    finalPayable =
+        total - discountAmount - previousBalance;
 
-    finalAmount = Math.round(finalAmount);
+    finalPayable =
+        Math.round(finalPayable);
 
-    document.getElementById("finalAmount").innerHTML =
-        "₹" + finalAmount.toLocaleString('en-IN');
+    document.getElementById('summaryTotal')
+        .innerHTML = "₹" + total.toLocaleString('en-IN');
 
-    document.getElementById("resultBox").style.display = "block";
+    document.getElementById('summaryDiscount')
+        .innerHTML = "- ₹" + discountAmount.toFixed(0);
+
+    document.getElementById('summaryBalance')
+        .innerHTML = "- ₹" + previousBalance.toFixed(0);
+
+    document.getElementById('finalAmount')
+        .innerHTML =
+        "₹" + finalPayable.toLocaleString('en-IN');
+
+    document.getElementById('resultBox')
+        .style.display='block';
+
+    document.getElementById('whatsappBtn')
+        .style.display='block';
+}
+
+function shareWhatsApp(){
+
+    let text =
+`🏢 Rudra Society Advance Payment Calculator
+
+Final Payable Amount: ₹${finalPayable.toLocaleString('en-IN')}`;
+
+    window.open(
+        "https://wa.me/?text=" +
+        encodeURIComponent(text),
+        "_blank"
+    );
 }
 
 </script>
