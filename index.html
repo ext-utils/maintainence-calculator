@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rudra Society Advance Payment Calculator</title>
+
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body{
+        background: linear-gradient(135deg,#0f172a,#1e293b,#334155);
+        min-height:100vh;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        padding:20px;
+    }
+
+    .container{
+        width:100%;
+        max-width:500px;
+        background:white;
+        border-radius:25px;
+        padding:30px;
+        box-shadow:0 15px 40px rgba(0,0,0,0.25);
+    }
+
+    .title{
+        text-align:center;
+        margin-bottom:25px;
+    }
+
+    .title h1{
+        color:#0f172a;
+        font-size:28px;
+        margin-bottom:8px;
+    }
+
+    .title p{
+        color:#64748b;
+        font-size:14px;
+    }
+
+    .form-group{
+        margin-bottom:18px;
+    }
+
+    label{
+        display:block;
+        margin-bottom:8px;
+        font-weight:600;
+        color:#334155;
+    }
+
+    input, select{
+        width:100%;
+        padding:14px;
+        border:2px solid #e2e8f0;
+        border-radius:12px;
+        font-size:16px;
+        outline:none;
+        transition:0.3s;
+    }
+
+    input:focus,
+    select:focus{
+        border-color:#2563eb;
+    }
+
+    .readonly{
+        background:#f1f5f9;
+        color:#475569;
+        font-weight:600;
+    }
+
+    .btn{
+        width:100%;
+        padding:15px;
+        border:none;
+        border-radius:12px;
+        background:linear-gradient(135deg,#2563eb,#1d4ed8);
+        color:white;
+        font-size:18px;
+        font-weight:700;
+        cursor:pointer;
+        transition:0.3s;
+    }
+
+    .btn:hover{
+        transform:translateY(-2px);
+    }
+
+    .result{
+        margin-top:25px;
+        background:linear-gradient(135deg,#dcfce7,#bbf7d0);
+        border-radius:18px;
+        padding:20px;
+        text-align:center;
+        display:none;
+    }
+
+    .result h2{
+        color:#166534;
+        margin-bottom:10px;
+    }
+
+    .amount{
+        font-size:36px;
+        font-weight:800;
+        color:#15803d;
+    }
+
+    .note{
+        margin-top:20px;
+        text-align:center;
+        color:#64748b;
+        font-size:13px;
+    }
+
+    @media(max-width:480px){
+        .title h1{
+            font-size:22px;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="title">
+        <h1>🏢 Rudra Society</h1>
+        <p>Advance Payment Calculator</p>
+    </div>
+
+    <div class="form-group">
+        <label>Monthly Maintenance (₹)</label>
+        <input type="number" id="maintenance" placeholder="Enter Monthly Maintenance">
+    </div>
+
+    <div class="form-group">
+        <label>Advance Duration</label>
+        <select id="duration" onchange="calculateFields()">
+            <option value="">Select Duration</option>
+            <option value="6">6 Months</option>
+            <option value="12">12 Months</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Total Amount (₹)</label>
+        <input type="text" id="totalAmount" class="readonly" readonly>
+    </div>
+
+    <div class="form-group">
+        <label>Discount</label>
+        <input type="text" id="discount" class="readonly" readonly>
+    </div>
+
+    <div class="form-group">
+        <label>Previous Balance (₹)</label>
+        <input type="number" id="previousBalance" value="0" placeholder="Enter Previous Balance">
+    </div>
+
+    <button class="btn" onclick="calculateFinalAmount()">
+        Calculate Final Payable Amount
+    </button>
+
+    <div class="result" id="resultBox">
+        <h2>Final Payable Amount</h2>
+        <div class="amount" id="finalAmount">₹0</div>
+    </div>
+
+    <div class="note">
+        Discount: 3% for 6 Months | 6% for 12 Months
+    </div>
+
+</div>
+
+<script>
+
+function calculateFields() {
+
+    let maintenance =
+        parseFloat(document.getElementById("maintenance").value) || 0;
+
+    let duration =
+        parseInt(document.getElementById("duration").value) || 0;
+
+    let totalAmount = maintenance * duration;
+
+    let discountPercent = 0;
+
+    if(duration === 6){
+        discountPercent = 3;
+    }
+    else if(duration === 12){
+        discountPercent = 6;
+    }
+
+    let discountAmount =
+        totalAmount * discountPercent / 100;
+
+    document.getElementById("totalAmount").value =
+        totalAmount.toFixed(2);
+
+    document.getElementById("discount").value =
+        discountPercent + "% (₹" +
+        discountAmount.toFixed(2) + ")";
+}
+
+document.getElementById("maintenance")
+.addEventListener("input", calculateFields);
+
+function calculateFinalAmount(){
+
+    let maintenance =
+        parseFloat(document.getElementById("maintenance").value) || 0;
+
+    let duration =
+        parseInt(document.getElementById("duration").value) || 0;
+
+    let previousBalance =
+        parseFloat(document.getElementById("previousBalance").value) || 0;
+
+    if(maintenance <= 0 || duration <= 0){
+        alert("Please enter Monthly Maintenance and Duration.");
+        return;
+    }
+
+    let totalAmount = maintenance * duration;
+
+    let discountPercent =
+        duration === 6 ? 3 : 6;
+
+    let discountAmount =
+        totalAmount * discountPercent / 100;
+
+    let finalAmount =
+        totalAmount - discountAmount - previousBalance;
+
+    finalAmount = Math.round(finalAmount);
+
+    document.getElementById("finalAmount").innerHTML =
+        "₹" + finalAmount.toLocaleString('en-IN');
+
+    document.getElementById("resultBox").style.display = "block";
+}
+
+</script>
+
+</body>
+</html>
